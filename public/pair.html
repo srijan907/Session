@@ -11,10 +11,12 @@
 </head>
 <body>
     <h1>WhatsApp QR Code Scanner</h1>
-    <p>Scan this QR code with your WhatsApp to generate a session.</p>
+    <p>Scan this QR code with WhatsApp to generate a session.</p>
     <div id="qr">
         <img id="qrImage" src="" alt="QR Code will appear here">
     </div>
+    <h3>Pair Code:</h3>
+    <input type="text" id="pairCode" readonly>
     <h3>Session ID:</h3>
     <textarea id="sessionId" rows="4" cols="50" readonly></textarea>
     
@@ -28,6 +30,9 @@
             }
             if (data.session_id) {
                 document.getElementById('sessionId').value = data.session_id;
+            }
+            if (data.pair_code) {
+                document.getElementById('pairCode').value = data.pair_code;
             }
         }
 
