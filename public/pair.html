@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Pair</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        #qr { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>WhatsApp QR Code Scanner</h1>
+    <p>Scan this QR code with your WhatsApp to generate a session.</p>
+    <div id="qr">
+        <img id="qrImage" src="" alt="QR Code will appear here">
+    </div>
+    <h3>Session ID:</h3>
+    <textarea id="sessionId" rows="4" cols="50" readonly></textarea>
+    
+    <script>
+        async function fetchSession() {
+            const res = await fetch('/generate-session');
+            const data = await res.json();
+
+            if (data.qr) {
+                document.getElementById('qrImage').src = data.qr;
+            }
+            if (data.session_id) {
+                document.getElementById('sessionId').value = data.session_id;
+            }
+        }
+
+        fetchSession();
+    </script>
+</body>
+</html>
